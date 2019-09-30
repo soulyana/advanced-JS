@@ -133,6 +133,7 @@
       /**
        * First Class Functions: Passing Functions as Arguments
        */
+      /*
 
        var years = [1990, 1965, 1937, 2005, 1998]
 
@@ -168,5 +169,34 @@
        console.log(ages);
        console.log(fullAge);
        console.log(rates);
+       */
 
-        
+       /**
+        * First Class Functions: Functions Returning Functions
+        */
+
+        function interviewQuestion(job) {
+            if (job === 'designer') {
+                return function(name) {
+                    console.log(name + ', can you please explain what UX design is?');
+                }
+            } else if (job === 'teacher') {
+                return function(name) {
+                    console.log(name + ', what subject do you teach?');
+                }
+            } else {
+                return function(name) {
+                    console.log('Hello, ' + name + ', what do you do?');
+                }
+            }
+        }
+
+        var teacherQuestion = interviewQuestion('teacher');
+        var designerQuestion = interviewQuestion('designer');
+
+        teacherQuestion('John');
+        designerQuestion('Jane');
+        designerQuestion('Mike');
+        designerQuestion('mark');
+
+        interviewQuestion('teacher')('James');
