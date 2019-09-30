@@ -46,4 +46,20 @@
 
     console.log(jane.lastName);
     console.log(john.lastName);
-    console.log(mark.lastName);
+    console.log(mark.lastName); 
+
+    /**
+     * The prototype chain in the console
+     */
+
+     console.log(jane);
+     console.log(john.prototype);
+     console.log(Person);
+     console.log(john._proto_);
+     console.log(john.hasOwnProperty('job'));
+     console.log(john.hasOwnProperty('lastName')); // not own property
+     console.log(john instanceof Person);
+
+     var x = [2,4,6];
+     console.info(x);
+     console.log(x.length);
