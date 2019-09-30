@@ -174,6 +174,7 @@
        /**
         * First Class Functions: Functions Returning Functions
         */
+       /*
 
         function interviewQuestion(job) {
             if (job === 'designer') {
@@ -200,3 +201,28 @@
         designerQuestion('mark');
 
         interviewQuestion('teacher')('James');
+        */
+
+        /**
+         * Immediately Invoked Function Expressions (IIFE)
+         * used for data privacy and code modularity
+         */
+
+
+        //  function game() {
+        //      var score = Math.random() * 10;
+        //      console.log(score >= 5);
+        //  }
+        //  game();
+
+         (function () {
+            var score = Math.random() * 10;
+            console.log(score >= 5);
+         })();
+
+        //  console.log(score);
+
+         (function (goodLuck) {
+            var score = Math.random() * 10;
+            console.log(score >= 5 - goodLuck);
+         })(5);
