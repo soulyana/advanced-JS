@@ -234,6 +234,7 @@
           * An inner function has always access to the variables and parameters of its outr function, even after the outer function has returned
           * built-into javascript
           */
+         /*
 
           function retirement(retirementAge) {
               var a = ' years left until retirement!!';
@@ -268,3 +269,65 @@
           }
 
           interviewQuestion('teacher')('John');
+          */
+
+          /**
+           * Bind, Call and Apply
+           */
+
+           var john = {
+                name: 'John',
+                age: 26,
+                job: 'teacher',
+                presentation: function(style, timeOfDay) {
+                    if (style === 'formal') {
+                        console.log('Good ' + timeOfDay + ', ladies and genteleman! I\'m ' + this.name + ', I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old.');
+                    } else if (style === 'friendly') {
+                        console.log('Hey! What\'s up? I\'m ' + this.name + ', I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old. Have a nice ' + timeOfDay + '.');
+                    }
+                }
+           }
+
+           var emily = {
+               name: 'Emily',
+               age: 35,
+               job: 'designer'
+           };
+
+           john.presentation('formal', 'morning');
+
+           // Method borrowing via call 
+           john.presentation.call(emily, 'friendly', 'afternoon');
+
+           // john.presentation.apply(emily, ['friendly', 'morning']); // won't work because we're not expecting an array
+
+           // bind method is similar to call method; generates a copy of the function; can create functions with preset arguments
+           var johnFriendly = john.presentation.bind(john, 'friendly');
+           johnFriendly('morning');
+           johnFriendly('evening'); // carrying - a techniqure where we create a function based on another function but with some preset parameters
+
+           var emilyFormal = john.presentation.bind(emily, 'formal');
+           emilyFormal('afternoon');
+
+           var years = [1990, 1965, 1937, 2005, 1998]
+
+           function arrayCalc(arr, fn) {
+               var arrRes = [];
+               for (var i = 0; i < arr.length; i++) {
+                   arrRes.push(fn(arr[i]));
+               }
+               return arrRes;
+           }
+    
+           function calculateAge(el) {
+               return 2019 - el;
+           }
+    
+           function isFullAge(limit, el) {
+               return el >= limit;
+           }
+
+           var ages = arrayCalc(years, calculateAge);
+           var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));
+           console.log(ages);
+           console.log(fullJapan);
