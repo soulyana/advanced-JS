@@ -207,6 +207,7 @@
          * Immediately Invoked Function Expressions (IIFE)
          * used for data privacy and code modularity
          */
+        /*
 
 
         //  function game() {
@@ -226,3 +227,44 @@
             var score = Math.random() * 10;
             console.log(score >= 5 - goodLuck);
          })(5);
+         */
+
+         /**
+          * Closures:
+          * An inner function has always access to the variables and parameters of its outr function, even after the outer function has returned
+          * built-into javascript
+          */
+
+          function retirement(retirementAge) {
+              var a = ' years left until retirement!!';
+              return function(yearOfBirth) {
+                  var age = 2019 - yearOfBirth;
+                  console.log((retirementAge - age) + a);
+              }
+          }
+
+          var retirementUS = retirement(66);
+          var retirementGermany = retirement(65);
+          var retirementIceland = retirement(67);
+
+          // retirement(66)(1988);
+
+          retirementUS(1988);
+          retirementGermany(1988);
+          retirementIceland(1988);
+
+          // Challenge - rewrite interview function
+
+          function interviewQuestion(job) {
+              return function(name) {
+                if (job === 'designer') {
+                    console.log(name + ', can you please explain what UX design is?');
+                } else if (job === 'teacher') {
+                    console.log(name + ', what subject do you teach?');
+                } else {
+                    console.log('Hello, ' + name + ', what do you do?');
+                }
+              }
+          }
+
+          interviewQuestion('teacher')('John');
